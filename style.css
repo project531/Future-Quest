@@ -1,0 +1,1455 @@
+
+/* =====================================================
+   FUTURE QUEST — ARCADE RPG EDITION
+   STYLE.CSS COMPLETO
+   Diseño: arcade + ciudad RPG + colores vibrantes
+===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap');
+
+:root {
+  --ink: #172b40;
+  --ink-soft: #41566b;
+  --night: #13243d;
+  --night-deep: #09172b;
+  --orange: #ff8c25;
+  --orange-dark: #d85a16;
+  --yellow: #ffe05c;
+  --green: #3cc48c;
+  --teal: #20b9ad;
+  --purple: #7359c8;
+  --cream: #fff9e9;
+  --white: #ffffff;
+  --shadow: 0 12px 0 rgba(7, 22, 42, .25);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+  font-family: "Nunito", sans-serif;
+  color: var(--ink);
+  background: var(--night-deep);
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible {
+  outline: 4px solid #ffe26a;
+  outline-offset: 4px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: .55;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* =====================================================
+   ESCENARIO PRINCIPAL
+===================================================== */
+
+#gameScreen {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #76c7df;
+}
+
+#world {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  image-rendering: auto;
+  touch-action: none;
+}
+
+/* =====================================================
+   PANTALLA DE INICIO — ARCADE
+===================================================== */
+
+#fqStandaloneScreen {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow: auto;
+
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      rgba(255, 183, 66, .20),
+      transparent 30%
+    ),
+    repeating-conic-gradient(
+      from 0deg at 50% 50%,
+      rgba(255,255,255,.025) 0deg 12deg,
+      transparent 12deg 24deg
+    ),
+    linear-gradient(
+      145deg,
+      #18365a 0%,
+      #142944 45%,
+      #09182d 100%
+    );
+}
+
+#fqStandaloneScreen.open {
+  display: flex;
+}
+
+/* Luces decorativas */
+
+#fqStandaloneScreen::before,
+#fqStandaloneScreen::after {
+  content: "";
+  position: fixed;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(65px);
+  opacity: .35;
+}
+
+#fqStandaloneScreen::before {
+  top: -120px;
+  left: -120px;
+  background: #ffab3d;
+}
+
+#fqStandaloneScreen::after {
+  bottom: -140px;
+  right: -100px;
+  background: #20c8b6;
+}
+
+/* Tarjeta principal */
+
+#fqStandaloneScreen .fq-home-card {
+  position: relative;
+  z-index: 2;
+  width: min(850px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  padding: clamp(22px, 4vw, 45px);
+  text-align: center;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(31, 65, 96, .98),
+      rgba(17, 40, 69, .99)
+    );
+
+  border: 4px solid #365d80;
+  border-radius: 30px;
+
+  box-shadow:
+    0 0 0 7px rgba(9, 20, 39, .7),
+    0 22px 0 #08162a,
+    0 34px 65px rgba(0, 0, 0, .4);
+}
+
+#fqStandaloneScreen .fq-home-card::-webkit-scrollbar {
+  width: 8px;
+}
+
+#fqStandaloneScreen .fq-home-card::-webkit-scrollbar-thumb {
+  background: #4e7795;
+  border-radius: 20px;
+}
+
+/* Etiqueta superior */
+
+.fq-kicker {
+  display: inline-block;
+  padding: 7px 18px;
+  border: 2px solid rgba(255, 224, 92, .55);
+  border-radius: 999px;
+
+  color: #ffe88a;
+  background: rgba(255, 224, 92, .08);
+
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 3px;
+}
+
+/* Logo grande estilo videojuego */
+
+#fqStandaloneScreen h1,
+.fq-game-logo {
+  margin: 18px 0 10px;
+
+  font-family: "Baloo 2", sans-serif;
+  font-size: clamp(58px, 11vw, 112px);
+  font-weight: 800;
+  line-height: .94;
+  letter-spacing: -3px;
+  text-align: center;
+
+  color: #ffe66b;
+
+  -webkit-text-stroke: 2px #9b4d15;
+
+  text-shadow:
+    0 3px 0 #ffb32b,
+    0 7px 0 #ec8520,
+    0 11px 0 #b85a18,
+    0 15px 0 #753a21,
+    0 22px 18px rgba(0,0,0,.48);
+}
+
+#fqStandaloneScreen h2 {
+  margin: 16px 0 12px;
+  color: #ffffff;
+
+  font-family: "Baloo 2", sans-serif;
+  font-size: clamp(23px, 4vw, 35px);
+  font-weight: 800;
+}
+
+#fqStandaloneScreen h3 {
+  margin: 5px 0 8px;
+  color: #ffffff;
+  font-family: "Baloo 2", sans-serif;
+  font-size: 22px;
+}
+
+#fqStandaloneScreen p {
+  max-width: 660px;
+  margin: 14px auto;
+  color: #d6e7f4;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.7;
+}
+
+.fq-home-subtitle {
+  color: #ffe58b !important;
+  font-weight: 900 !important;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Insignias de inicio */
+
+.fq-home-stats {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 25px 0;
+}
+
+.fq-stat {
+  padding: 10px 17px;
+  border: 2px solid #426c8b;
+  border-radius: 13px;
+  background: #203f60;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.fq-stat strong {
+  color: #ffe26c;
+}
+
+/* Botones arcade */
+
+#fqStandaloneScreen button {
+  min-height: 52px;
+  margin: 7px;
+  padding: 12px 25px;
+
+  border: 3px solid #ffcc68;
+  border-radius: 15px;
+
+  color: #532a16;
+  background: linear-gradient(
+    180deg,
+    #ffe16b 0%,
+    #ffb23b 50%,
+    #ff8726 100%
+  );
+
+  font-family: "Baloo 2", sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+
+  box-shadow:
+    0 6px 0 #a44c1d,
+    0 10px 16px rgba(0,0,0,.2);
+
+  transition:
+    transform .15s ease,
+    box-shadow .15s ease,
+    filter .15s ease;
+}
+
+#fqStandaloneScreen button:hover:not(:disabled) {
+  transform: translateY(-3px);
+  filter: brightness(1.08);
+  box-shadow:
+    0 9px 0 #a44c1d,
+    0 14px 20px rgba(0,0,0,.25);
+}
+
+#fqStandaloneScreen button:active:not(:disabled) {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 #a44c1d;
+}
+
+#fqStandaloneScreen button:disabled {
+  background: #63788d;
+  border-color: #8da0b0;
+  color: #d4dce5;
+  box-shadow: 0 5px 0 #34495b;
+}
+
+#fqPlayBtn {
+  min-width: 220px;
+  font-size: 22px !important;
+  animation: fqPlayPulse 2.3s ease-in-out infinite;
+}
+
+@keyframes fqPlayPulse {
+  0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.15);
+  }
+}
+
+/* Botones secundarios */
+
+#fqChooseLevelBtn,
+#fqBackHome {
+  color: #ffffff !important;
+  background: linear-gradient(
+    180deg,
+    #38cfc0,
+    #159a99
+  ) !important;
+  border-color: #80f2d9 !important;
+  box-shadow: 0 6px 0 #116c70 !important;
+}
+
+#fqResetBtn {
+  color: #ffffff !important;
+  background: linear-gradient(
+    180deg,
+    #8a77d7,
+    #624aa9
+  ) !important;
+  border-color: #b8a8f4 !important;
+  box-shadow: 0 6px 0 #423278 !important;
+}
+
+/* =====================================================
+   TARJETAS DE ZONAS
+===================================================== */
+
+.fq-level-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+  margin: 24px 0;
+}
+
+#fqStandaloneScreen .fq-level-card {
+  min-width: 0;
+  padding: 20px 15px;
+  border: 3px solid #47708c;
+  border-radius: 20px;
+  background: linear-gradient(
+    180deg,
+    #2b5271,
+    #1b3857
+  );
+  text-align: center;
+}
+
+#fqStandaloneScreen .fq-level-card.locked {
+  filter: grayscale(.55);
+}
+
+#fqStandaloneScreen .fq-level-card p {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+#fqStandaloneScreen .fq-level-card button {
+  width: 100%;
+  margin: 12px 0 0;
+  padding: 10px;
+  font-size: 13px;
+}
+
+.fq-level-icon {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 42px;
+}
+
+.fq-level-number {
+  display: inline-block;
+  margin-bottom: 7px;
+  color: #ffe26c;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.fq-progress-mini {
+  width: 100%;
+  height: 9px;
+  overflow: hidden;
+  margin-top: 12px;
+  border-radius: 20px;
+  background: #102b43;
+}
+
+.fq-progress-mini > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    #ffe26c,
+    #ff9636
+  );
+}
+
+/* =====================================================
+   INTERFAZ DEL JUEGO
+===================================================== */
+
+#fqGameInterface {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: none;
+  pointer-events: none;
+  color: var(--ink);
+}
+
+#fqGameInterface button {
+  pointer-events: auto;
+}
+
+.fq-topbar {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.fq-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.fq-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 45px;
+  padding: 10px 15px;
+
+  border: 3px solid #ffffff;
+  border-radius: 14px;
+
+  color: #173a49;
+  background: #fff9e9;
+
+  box-shadow:
+    0 5px 0 rgba(22, 55, 69, .28),
+    0 9px 18px rgba(0,0,0,.12);
+
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.fq-button {
+  min-height: 43px;
+  padding: 9px 13px;
+
+  border: 3px solid #ffffff;
+  border-radius: 13px;
+
+  background: #1a9f9b;
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 900;
+
+  box-shadow: 0 5px 0 #12646a;
+  transition: transform .12s ease;
+}
+
+.fq-button:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+}
+
+.fq-button:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 #12646a;
+}
+
+/* Progreso */
+
+.fq-progress {
+  position: absolute;
+  top: 80px;
+  left: 16px;
+  width: min(290px, calc(100vw - 32px));
+  padding: 13px;
+
+  border: 3px solid #ffffff;
+  border-radius: 17px;
+
+  background: #fff9e9;
+  box-shadow: 0 6px 0 rgba(25,55,62,.25);
+}
+
+.fq-progress-label {
+  margin-bottom: 9px;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.fq-track {
+  width: 100%;
+  height: 13px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #d5e1d8;
+}
+
+.fq-fill {
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    #34bc83,
+    #ffe16a
+  );
+  transition: width .3s ease;
+}
+
+/* Indicador de interacción */
+
+.interaction-prompt {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  max-width: min(470px, 88vw);
+  padding: 12px 19px;
+
+  border: 3px solid #ffffff;
+  border-radius: 16px;
+
+  color: #ffffff;
+  background: #173f59;
+
+  box-shadow: 0 6px 0 #0b293c;
+  font-size: 12px;
+  font-weight: 900;
+  text-align: center;
+  letter-spacing: .3px;
+}
+
+/* =====================================================
+   CONTROLES TÁCTILES
+===================================================== */
+
+.fq-touch {
+  position: absolute;
+  bottom: 24px;
+  left: 20px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 50px);
+  grid-template-rows: repeat(2, 50px);
+  gap: 5px;
+
+  pointer-events: auto;
+}
+
+.fq-touch button,
+.fq-interact {
+  border: 3px solid #ffffff;
+  border-radius: 15px;
+
+  background: rgba(26, 90, 108, .92);
+  color: #ffffff;
+
+  font-size: 21px;
+  font-weight: 900;
+
+  box-shadow: 0 5px 0 #123e50;
+  touch-action: none;
+  user-select: none;
+}
+
+.fq-touch button:active,
+.fq-interact:active {
+  background: #20b9ad;
+  transform: translateY(3px);
+}
+
+.fq-interact {
+  position: absolute;
+  right: 20px;
+  bottom: 25px;
+
+  width: 74px;
+  height: 58px;
+
+  font-size: 16px;
+  pointer-events: auto;
+}
+
+/* =====================================================
+   PANELES: MAPA Y MOCHILA
+===================================================== */
+
+.fq-panel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: min(530px, calc(100vw - 28px));
+  max-height: 80vh;
+  overflow-y: auto;
+
+  padding: 25px;
+  border: 4px solid #ffffff;
+  border-radius: 24px;
+
+  background: #fff9e9;
+  box-shadow:
+    0 10px 0 #256477,
+    0 24px 55px rgba(0,0,0,.35);
+
+  pointer-events: auto;
+}
+
+.fq-panel h2 {
+  margin: 5px 0 15px;
+  color: #185d72;
+  font-family: "Baloo 2", sans-serif;
+  font-size: 30px;
+}
+
+.fq-panel h3 {
+  margin: 0 0 8px;
+}
+
+.fq-panel p {
+  line-height: 1.6;
+}
+
+.fq-panel .fq-level-card {
+  margin: 12px 0;
+  padding: 15px;
+
+  border: 2px solid #c5dfd5;
+  border-radius: 15px;
+
+  background: #ffffff;
+}
+
+.fq-panel .fq-button {
+  margin-top: 7px;
+}
+
+/* =====================================================
+   MODALES DE DIÁLOGO Y MINIJUEGOS
+===================================================== */
+
+#futureQuestModal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  padding: 16px;
+  background: rgba(5, 20, 38, .75);
+  backdrop-filter: blur(5px);
+}
+
+#futureQuestModal.open {
+  display: flex;
+}
+
+#futureQuestModal .modal-card {
+  position: relative;
+  width: min(600px, 100%);
+  max-height: 88vh;
+  overflow-y: auto;
+
+  padding: clamp(20px, 4vw, 32px);
+
+  border: 4px solid #ffffff;
+  border-radius: 25px;
+
+  color: var(--ink);
+  background: #fffaf0;
+
+  box-shadow:
+    0 9px 0 #259c9c,
+    0 25px 65px rgba(0,0,0,.4);
+
+  animation: fqModalAppear .2s ease-out;
+}
+
+@keyframes fqModalAppear {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+#futureQuestModal h2 {
+  margin: 9px 35px 12px 0;
+  color: #166c80;
+
+  font-family: "Baloo 2", sans-serif;
+  font-size: clamp(23px, 5vw, 32px);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+#futureQuestModal .modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+
+  display: grid;
+  place-items: center;
+
+  width: 37px;
+  height: 37px;
+
+  border: 2px solid #d7e4e0;
+  border-radius: 50%;
+
+  color: #174f62;
+  background: #ffffff;
+
+  font-size: 25px;
+  font-weight: 900;
+}
+
+.modal-icon {
+  font-size: 42px;
+}
+
+.modal-description {
+  margin: 13px 0 18px;
+  color: #40566a;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+#futureQuestModal .primary-button,
+#futureQuestModal .secondary-button,
+#futureQuestModal .action-button {
+  min-height: 48px;
+  padding: 11px 17px;
+
+  border: 2px solid transparent;
+  border-radius: 13px;
+
+  font-weight: 900;
+  transition: filter .15s ease;
+}
+
+#futureQuestModal .primary-button {
+  color: #ffffff;
+  background: #f28b26;
+  border-color: #ffbb60;
+  box-shadow: 0 4px 0 #b85c1b;
+}
+
+#futureQuestModal .secondary-button {
+  color: #176878;
+  background: #d7f3ec;
+  border-color: #a2d9d1;
+}
+
+#futureQuestModal .action-button {
+  display: block;
+  width: 100%;
+  margin: 8px 0;
+
+  color: #213d4c;
+  background: #ffffff;
+  border-color: #cbdedb;
+
+  text-align: left;
+  line-height: 1.5;
+}
+
+#futureQuestModal .action-button:hover {
+  background: #e6f9f2;
+  border-color: #4cc9a1;
+}
+
+#futureQuestModal button:hover:not(:disabled) {
+  filter: brightness(1.05);
+}
+
+#futureQuestModal button:disabled {
+  opacity: .5;
+}
+
+/* Mensajes de resultado */
+
+.modal-feedback {
+  margin: 15px 0;
+  padding: 13px 15px;
+
+  border: 2px solid #b4e8c8;
+  border-radius: 13px;
+
+  color: #16744b;
+  background: #e4f8e9;
+
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1.5;
+}
+
+.modal-feedback.error {
+  color: #a54036;
+  background: #fff0e8;
+  border-color: #f2b9a3;
+}
+
+/* Diálogos */
+
+.dialogue-person {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.dialogue-avatar {
+  display: grid;
+  place-items: center;
+
+  width: 58px;
+  height: 58px;
+
+  border: 3px solid #ffffff;
+  border-radius: 16px;
+
+  background: #c5f0df;
+  font-size: 30px;
+}
+
+.dialogue-name {
+  color: #156b80;
+  font-size: 19px;
+  font-weight: 900;
+}
+
+.dialogue-role {
+  color: #698092;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* Secuencias */
+
+.sidebar-label {
+  margin: 15px 0 10px;
+  color: #196f7d;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.sequence-result {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0;
+}
+
+.sequence-result span {
+  display: block;
+  padding: 11px;
+
+  border-left: 5px solid #26b99b;
+  border-radius: 10px;
+
+  background: #e5f6ef;
+  color: #28505a;
+
+  font-size: 13px;
+  font-weight: 800;
+}
+
+/* Memoria */
+
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 17px 0;
+}
+
+.memory-card {
+  min-height: 90px;
+  padding: 12px;
+
+  border: 3px solid #d3e1df;
+  border-radius: 14px;
+
+  background: #ffffff;
+  color: #275063;
+
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1.4;
+
+  transition:
+    background .15s ease,
+    transform .15s ease;
+}
+
+.memory-card:not(:disabled):hover {
+  transform: translateY(-2px);
+  background: #eaf8f2;
+}
+
+.memory-card.revealed {
+  background: #fff0c5;
+  border-color: #efbd5d;
+}
+
+.memory-card.matched {
+  background: #c8f1da;
+  border-color: #59c58c;
+  color: #176a46;
+}
+
+/* =====================================================
+   ELEMENTOS DECORATIVOS
+===================================================== */
+
+.fq-divider {
+  width: min(400px, 85%);
+  height: 4px;
+  margin: 20px auto;
+  border-radius: 10px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #ffbe50,
+    #37c9b0,
+    transparent
+  );
+}
+
+.fq-instructions {
+  margin-top: 25px !important;
+  color: #a9c4d9 !important;
+  font-size: 12px !important;
+}
+
+.fq-decorative-stars {
+  color: #ffe26c;
+  font-size: 25px;
+  letter-spacing: 12px;
+  text-shadow: 0 0 14px #ffac45;
+}
+
+/* =====================================================
+   RESPONSIVE — TABLETS
+===================================================== */
+
+@media (max-width: 850px) {
+  .fq-level-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #fqStandaloneScreen .fq-home-card {
+    width: min(650px, 100%);
+  }
+
+  #fqStandaloneScreen h1 {
+    font-size: clamp(48px, 11vw, 78px);
+  }
+
+  .fq-topbar {
+    flex-wrap: wrap;
+  }
+
+  .fq-actions {
+    max-width: 100%;
+  }
+}
+
+/* =====================================================
+   RESPONSIVE — CELULARES
+===================================================== */
+
+@media (max-width: 600px) {
+  #fqStandaloneScreen {
+    padding: 12px;
+  }
+
+  #fqStandaloneScreen .fq-home-card {
+    max-height: calc(100vh - 24px);
+    padding: 22px 15px;
+    border-radius: 22px;
+  }
+
+  #fqStandaloneScreen h1 {
+    font-size: clamp(43px, 12vw, 67px);
+    letter-spacing: -2px;
+    -webkit-text-stroke: 1px #9b4d15;
+  }
+
+  #fqStandaloneScreen h2 {
+    font-size: 23px;
+  }
+
+  #fqStandaloneScreen p {
+    font-size: 13px;
+  }
+
+  #fqStandaloneScreen button {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+
+  #fqPlayBtn {
+    min-width: 180px;
+  }
+
+  .fq-topbar {
+    top: 9px;
+    left: 9px;
+    right: 9px;
+    gap: 7px;
+  }
+
+  .fq-pill {
+    min-height: 36px;
+    padding: 7px 10px;
+    font-size: 10px;
+  }
+
+  .fq-button {
+    min-height: 36px;
+    padding: 6px 9px;
+    font-size: 10px;
+  }
+
+  .fq-progress {
+    top: 103px;
+    left: 9px;
+    width: 210px;
+    padding: 9px;
+  }
+
+  .fq-progress-label {
+    font-size: 10px;
+  }
+
+  .fq-touch {
+    bottom: 18px;
+    left: 12px;
+    grid-template-columns: repeat(3, 43px);
+    grid-template-rows: repeat(2, 43px);
+    gap: 4px;
+  }
+
+  .fq-touch button {
+    font-size: 17px;
+  }
+
+  .fq-interact {
+    right: 12px;
+    bottom: 18px;
+    width: 62px;
+    height: 51px;
+  }
+
+  .interaction-prompt {
+    bottom: 125px;
+    width: max-content;
+    max-width: 92vw;
+    padding: 9px 12px;
+    font-size: 10px;
+  }
+
+  .fq-panel {
+    padding: 18px;
+  }
+
+  #futureQuestModal .modal-card {
+    padding: 21px 16px;
+  }
+
+  .memory-grid {
+    gap: 7px;
+  }
+
+  .memory-card {
+    min-height: 80px;
+    padding: 8px;
+    font-size: 11px;
+  }
+}
+
+/* =====================================================
+   ACCESIBILIDAD
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+
+/* ================================================
+   FUTURE QUEST — PORTADA COLORIDA ARCADE
+   Solo modifica la pantalla de inicio
+================================================ */
+
+#fqStandaloneScreen {
+  background:
+    radial-gradient(
+      circle at 12% 18%,
+      #fff8b0 0 6%,
+      transparent 6.5%
+    ),
+    radial-gradient(
+      circle at 85% 22%,
+      #ff9fc8 0 8%,
+      transparent 8.5%
+    ),
+    radial-gradient(
+      circle at 75% 85%,
+      #a5e88b 0 10%,
+      transparent 10.5%
+    ),
+    linear-gradient(
+      145deg,
+      #72c9e8 0%,
+      #a7e6f5 32%,
+      #ffe28b 67%,
+      #ffb5cf 100%
+    );
+}
+
+#fqStandaloneScreen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  background-image:
+    radial-gradient(
+      #ffffff 2px,
+      transparent 3px
+    ),
+    radial-gradient(
+      #ffd447 3px,
+      transparent 4px
+    );
+
+  background-size:
+    90px 90px,
+    150px 150px;
+
+  background-position:
+    0 0,
+    40px 50px;
+
+  opacity: 0.75;
+}
+
+#fqStandaloneScreen .fq-home-card {
+  position: relative;
+  z-index: 1;
+
+  background: #fff8e9;
+
+  border: 6px solid #ffffff;
+  outline: 4px solid #ff994a;
+
+  border-radius: 35px;
+
+  box-shadow:
+    0 14px 0 #e58a54,
+    0 28px 55px #a55b6640;
+
+  color: #34434b;
+}
+
+#fqStandaloneScreen .fq-kicker {
+  display: inline-block;
+
+  padding: 9px 22px;
+
+  background: #f57ca5;
+  color: #ffffff;
+
+  border: 3px solid #ffffff;
+  border-radius: 100px;
+
+  font-weight: 900;
+  letter-spacing: 2px;
+
+  box-shadow: 0 5px 0 #c85480;
+}
+
+#fqStandaloneScreen .fq-game-logo {
+  font-family: "Baloo 2", cursive;
+
+  font-size: clamp(64px, 10vw, 120px);
+  font-weight: 900;
+
+  line-height: 0.85;
+  letter-spacing: -3px;
+
+  color: #ffd447;
+
+  -webkit-text-stroke: 3px #c86b36;
+
+  text-shadow:
+    3px 3px 0 #ff994a,
+    6px 6px 0 #e77b37,
+    9px 9px 0 #72c9e8,
+    12px 12px 0 #358dad;
+
+  margin: 24px 0 30px;
+
+  transform: rotate(-2deg);
+}
+
+#fqStandaloneScreen .fq-home-subtitle {
+  display: inline-block;
+
+  background: #69bd72;
+  color: #ffffff;
+
+  padding: 10px 22px;
+
+  border-radius: 14px;
+
+  font-weight: 900;
+  font-size: 17px;
+
+  box-shadow: 0 5px 0 #3d9353;
+}
+
+#fqStandaloneScreen .fq-decorative-stars {
+  font-size: 36px;
+  color: #ff994a;
+
+  text-shadow:
+    2px 3px 0 #ffd447;
+
+  animation: fqStarsFloat 2.5s ease-in-out infinite;
+}
+
+@keyframes fqStarsFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(5deg);
+  }
+}
+
+#fqStandaloneScreen .fq-home-card h2 {
+  color: #e87943;
+  font-weight: 900;
+}
+
+#fqStandaloneScreen .fq-home-stats {
+  gap: 12px;
+}
+
+#fqStandaloneScreen .fq-stat {
+  background: #fff1b3;
+
+  border: 3px solid #ffd447;
+  border-radius: 18px;
+
+  color: #65432e;
+
+  box-shadow: 0 5px 0 #e4c46a;
+}
+
+#fqStandaloneScreen .fq-stat:nth-child(2) {
+  background: #ffd4e4;
+  border-color: #f57ca5;
+  box-shadow: 0 5px 0 #dc88a7;
+}
+
+#fqStandaloneScreen .fq-stat:nth-child(3) {
+  background: #c7efc4;
+  border-color: #69bd72;
+  box-shadow: 0 5px 0 #7dbb7e;
+}
+
+#fqStandaloneScreen .fq-stat:nth-child(4) {
+  background: #d0f0fa;
+  border-color: #72c9e8;
+  box-shadow: 0 5px 0 #82c5db;
+}
+
+#fqStandaloneScreen #fqPlayBtn {
+  background: linear-gradient(
+    180deg,
+    #ffb85f,
+    #ff8a30
+  );
+
+  color: #ffffff;
+
+  border: 4px solid #ffffff;
+  border-radius: 18px;
+
+  font-size: 23px;
+  font-weight: 900;
+
+  box-shadow:
+    0 7px 0 #c66a34,
+    0 12px 25px #ff994a55;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+#fqStandaloneScreen #fqPlayBtn:hover {
+  transform: translateY(-4px) scale(1.03);
+
+  box-shadow:
+    0 11px 0 #c66a34,
+    0 16px 30px #ff994a66;
+}
+
+#fqStandaloneScreen #fqChooseLevelBtn {
+  background: #72c9e8;
+  color: #ffffff;
+
+  border: 3px solid #ffffff;
+  border-radius: 16px;
+
+  font-weight: 900;
+
+  box-shadow: 0 5px 0 #3c9bbe;
+}
+
+#fqStandaloneScreen #fqResetBtn {
+  background: #f8dce4;
+  color: #a45271;
+
+  border: 2px solid #f57ca5;
+  border-radius: 14px;
+}
+
+#fqStandaloneScreen .fq-divider {
+  background: #f6ca83;
+}
+
+#fqStandaloneScreen .fq-instructions {
+  background: #e7f7fb;
+
+  border-radius: 14px;
+
+  padding: 12px;
+
+  color: #47768b;
+}
+
+@media (max-width: 600px) {
+  #fqStandaloneScreen .fq-home-card {
+    border-width: 4px;
+    border-radius: 24px;
+  }
+
+  #fqStandaloneScreen .fq-game-logo {
+    font-size: clamp(58px, 15vw, 86px);
+    -webkit-text-stroke: 2px #c86b36;
+  }
+
+  #fqStandaloneScreen #fqPlayBtn {
+    font-size: 19px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #fqStandaloneScreen .fq-decorative-stars {
+    animation: none;
+  }
+}
